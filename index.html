@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questo Hub - Project Showcase</title>
+    
+    <!-- Google Fonts - Modern, elegant typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           CSS VARIABLES
+           Centralized color and spacing system for easy customization
+           ======================================== */
+        
+        :root {
+            /* Color Palette - Modern, sophisticated colors */
+            --primary-color: #6366f1;        /* Indigo */
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary-color: #ec4899;      /* Pink accent */
+            --success-color: #10b981;        /* Green */
+            --warning-color: #f59e0b;        /* Amber */
+            --info-color: #06b6d4;           /* Cyan */
+            
+            /* Neutral colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-tertiary: #f3f4f6;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --text-muted: #9ca3af;
+            --border-color: #e5e7eb;
+            
+            /* Shadows - Layered for depth */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Spacing system - Consistent rhythm */
+            --space-xs: 0.5rem;    /* 8px */
+            --space-sm: 0.75rem;   /* 12px */
+            --space-md: 1rem;      /* 16px */
+            --space-lg: 1.5rem;    /* 24px */
+            --space-xl: 2rem;      /* 32px */
+            --space-2xl: 3rem;     /* 48px */
+            --space-3xl: 4rem;     /* 64px */
+            
+            /* Border radius */
+            --radius-sm: 0.375rem;  /* 6px */
+            --radius-md: 0.5rem;    /* 8px */
+            --radius-lg: 0.75rem;   /* 12px */
+            --radius-xl: 1rem;      /* 16px */
+            --radius-2xl: 1.5rem;   /* 24px */
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* ========================================
+           GLOBAL RESET & BASE STYLES
+           ======================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Subtle animated gradient background */
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Animated gradient background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* ========================================
+           CONTAINER & LAYOUT
+           ======================================== */
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+        
+        /* ========================================
+           HEADER SECTION
+           Modern typography with gradient text
+           ======================================== */
+        
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-3xl);
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            /* ^ Responsive font size that scales with viewport */
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.02em;
+        }
+        
+        .header-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+        
+        /* ========================================
+           GLASS CARD COMPONENT
+           Modern glassmorphism effect
+           ======================================== */
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            transition: all var(--transition-base);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 38px -10px rgba(0, 0, 0, 0.15), 0 12px 15px -5px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* ========================================
+           PROGRESS SECTION
+           Modern progress bar with gradient
+           ======================================== */
+        
+        .progress-section {
+            margin-bottom: var(--space-3xl);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .progress-card {
+            padding: var(--space-xl);
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .progress-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .progress-stats {
+            display: flex;
+            gap: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+        
+        .progress-bar-container {
+            position: relative;
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 9999px;
+            transition: width var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animated shimmer effect */
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+        
+        .progress-text {
+            margin-top: var(--space-sm);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* ========================================
+           CALENDAR SECTION
+           ======================================== */
+        
+        .calendar-section {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .calendar-card {
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        
+        /* Month grid - responsive layout */
+        .months-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            /* ^ Creates responsive columns that auto-adjust */
+            gap: var(--space-2xl);
+        }
+        
+        .month-container {
+            /* Each month gets its own container */
+        }
+        
+        .month-header {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .month-title {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .month-year {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        /* ========================================
+           CALENDAR GRID
+           7-column grid for days of the week
+           ======================================== */
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: clamp(0.375rem, 0.8vw, 0.625rem);
+        }
+        
+        .day-header {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: var(--space-xs);
+        }
+        
+        /* ========================================
+           DAY CELLS
+           Modern card design with hover effects
+           ======================================== */
+        
+        .day-cell {
+            aspect-ratio: 1;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: clamp(0.375rem, 1vw, 0.625rem);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all var(--transition-base);
+            overflow: hidden;
+        }
+        
+        /* Hover effect - lift and glow */
+        .day-cell:not(.empty):hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 16px -4px rgba(99, 102, 241, 0.3);
+            border-color: var(--primary-light);
+            z-index: 10;
+        }
+        
+        .day-number {
+            font-size: clamp(0.875rem, 1.2vw, 1rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            line-height: 1;
+        }
+        
+        .project-title {
+            font-size: clamp(0.625rem, 0.9vw, 0.75rem);
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-weight: 500;
+        }
+        
+        /* ========================================
+           STATUS STATES
+           Color-coded project statuses with modern gradients
+           ======================================== */
+        
+        /* Completed - Success gradient */
+        .day-cell.completed {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-color: var(--success-color);
+        }
+        
+        .day-cell.completed .day-number {
+            color: #065f46;
+        }
+        
+        .day-cell.completed .project-title {
+            color: #047857;
+        }
+        
+        .day-cell.completed::before {
+            content: '✓';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 0.625rem;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+        
+        /* In Progress - Warning gradient */
+        .day-cell.in-progress {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: var(--warning-color);
+        }
+        
+        .day-cell.in-progress .day-number {
+            color: #92400e;
+        }
+        
+        .day-cell.in-progress .project-title {
+            color: #b45309;
+        }
+        
+        .day-cell.in-progress::before {
+            content: '⏳';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 0.625rem;
+        }
+        
+        /* Upcoming - Info gradient */
+        .day-cell.upcoming {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: var(--info-color);
+        }
+        
+        .day-cell.upcoming .day-number {
+            color: #1e3a8a;
+        }
+        
+        .day-cell.upcoming .project-title {
+            color: #1e40af;
+        }
+        
+        .day-cell.upcoming::before {
+            content: '📅';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 0.625rem;
+        }
+        
+        /* Empty cells */
+        .day-cell.empty {
+            background: transparent;
+            border-color: transparent;
+            cursor: default;
+        }
+        
+        .day-cell.empty:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* ========================================
+           LEGEND
+           Modern tag-based design
+           ======================================== */
+        
+        .legend {
+            margin-top: var(--space-2xl);
+            padding: var(--space-xl);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-color);
+        }
+        
+        .legend-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-md);
+        }
+        
+        .legend-items {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            background: var(--bg-primary);
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .legend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .legend-dot.completed {
+            background: var(--success-color);
+        }
+        
+        .legend-dot.in-progress {
+            background: var(--warning-color);
+        }
+        
+        .legend-dot.upcoming {
+            background: var(--info-color);
+        }
+        
+        /* ========================================
+           MODAL / POPUP
+           Modern overlay with smooth animations
+           ======================================== */
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            animation: fadeIn var(--transition-base);
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: var(--radius-2xl);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp var(--transition-base);
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 10;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: var(--space-lg);
+            right: var(--space-lg);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+        
+        .modal-close:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            padding-right: var(--space-3xl);
+        }
+        
+        .modal-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            background: var(--bg-tertiary);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .modal-body {
+            padding: var(--space-xl);
+        }
+        
+        .modal-section {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .modal-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .modal-text {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-md) var(--space-xl);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            transition: all var(--transition-base);
+            margin-top: var(--space-md);
+        }
+        
+        .modal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px -4px rgba(99, 102, 241, 0.4);
+        }
+        
+        .modal-link::after {
+            content: '→';
+            transition: transform var(--transition-fast);
+        }
+        
+        .modal-link:hover::after {
+            transform: translateX(4px);
+        }
+        
+        /* ========================================
+           CUSTOM SCROLLBAR
+           Modern, minimal scrollbar design
+           ======================================== */
+        
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-content::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 9999px;
+        }
+        
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+        
+        /* ========================================
+           RESPONSIVE BREAKPOINTS
+           Mobile-first responsive design
+           ======================================== */
+        
+        /* Tablets and below */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: var(--space-xl) var(--space-md);
+            }
+            
+            .header {
+                margin-bottom: var(--space-xl);
+            }
+            
+            .progress-section,
+            .calendar-section {
+                margin-bottom: var(--space-xl);
+            }
+            
+            .progress-card,
+            .calendar-card {
+                padding: var(--space-lg);
+            }
+            
+            .months-grid {
+                gap: var(--space-xl);
+            }
+            
+            .calendar-grid {
+                gap: 0.375rem;
+            }
+            
+            .day-header {
+                font-size: 0.625rem;
+            }
+            
+            .modal-content {
+                margin: var(--space-md);
+            }
+            
+            .modal-header,
+            .modal-body {
+                padding: var(--space-lg);
+            }
+        }
+        
+        /* Small phones */
+        @media (max-width: 480px) {
+            .main-container {
+                padding: var(--space-lg) var(--space-sm);
+            }
+            
+            .progress-stats {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .legend-items {
+                flex-direction: column;
+            }
+            
+            .legend-item {
+                justify-content: center;
+            }
+        }
+        
+        /* Large screens - limit growth */
+        @media (min-width: 1536px) {
+            .months-grid {
+                grid-template-columns: repeat(2, minmax(400px, 1fr));
+            }
+        }
+        
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Focus styles for accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        
+        <!-- Header -->
+        <header class="header">
+            <h1 class="header-title">Questo Hub</h1>
+            <p class="header-subtitle">Building projects, one day at a time</p>
+        </header>
+        
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="glass-card progress-card">
+                <div class="progress-header">
+                    <h2 class="progress-title">Your Progress</h2>
+                    <div class="progress-stats">
+                        <div class="stat-item">
+                            <span>Completed:</span>
+                            <span class="stat-value" id="completedCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>In Progress:</span>
+                            <span class="stat-value" id="inProgressCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Total:</span>
+                            <span class="stat-value">59</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                
+                <p class="progress-text" id="progressText">0% Complete</p>
+            </div>
+        </section>
+        
+        <!-- Calendar Section -->
+        <section class="calendar-section">
+            <div class="glass-card calendar-card">
+                
+                <!-- Months Grid -->
+                <div class="months-grid">
+                    
+                    <!-- January -->
+                    <div class="month-container">
+                        <div class="month-header">
+                            <h3 class="month-title">January</h3>
+                            <p class="month-year">2026</p>
+                        </div>
+                        
+                        <div class="calendar-grid">
+                            <!-- Day headers -->
+                            <div class="day-header">Sun</div>
+                            <div class="day-header">Mon</div>
+                            <div class="day-header">Tue</div>
+                            <div class="day-header">Wed</div>
+                            <div class="day-header">Thu</div>
+                            <div class="day-header">Fri</div>
+                            <div class="day-header">Sat</div>
+                            
+                            <!-- Week 1 -->
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            
+                            <div class="day-cell completed" onclick="showProject(1)" role="button" tabindex="0">
+                                <div class="day-number">1</div>
+                                <div class="project-title">Portfolio</div>
+                            </div>
+                            
+                            <div class="day-cell in-progress" onclick="showProject(2)" role="button" tabindex="0">
+                                <div class="day-number">2</div>
+                                <div class="project-title">To-Do App</div>
+                            </div>
+                            
+                            <div class="day-cell upcoming" onclick="showProject(3)" role="button" tabindex="0">
+                                <div class="day-number">3</div>
+                                <div class="project-title">Weather</div>
+                            </div>
+                            
+                            <div class="day-cell"><div class="day-number">4</div></div>
+                            
+                            <!-- Week 2 -->
+                            <div class="day-cell"><div class="day-number">5</div></div>
+                            <div class="day-cell"><div class="day-number">6</div></div>
+                            <div class="day-cell"><div class="day-number">7</div></div>
+                            <div class="day-cell"><div class="day-number">8</div></div>
+                            <div class="day-cell"><div class="day-number">9</div></div>
+                            <div class="day-cell"><div class="day-number">10</div></div>
+                            <div class="day-cell"><div class="day-number">11</div></div>
+                            
+                            <!-- Week 3 -->
+                            <div class="day-cell"><div class="day-number">12</div></div>
+                            <div class="day-cell"><div class="day-number">13</div></div>
+                            <div class="day-cell"><div class="day-number">14</div></div>
+                            <div class="day-cell"><div class="day-number">15</div></div>
+                            <div class="day-cell"><div class="day-number">16</div></div>
+                            <div class="day-cell"><div class="day-number">17</div></div>
+                            <div class="day-cell"><div class="day-number">18</div></div>
+                            
+                            <!-- Week 4 -->
+                            <div class="day-cell"><div class="day-number">19</div></div>
+                            <div class="day-cell"><div class="day-number">20</div></div>
+                            <div class="day-cell"><div class="day-number">21</div></div>
+                            <div class="day-cell"><div class="day-number">22</div></div>
+                            <div class="day-cell"><div class="day-number">23</div></div>
+                            <div class="day-cell"><div class="day-number">24</div></div>
+                            <div class="day-cell"><div class="day-number">25</div></div>
+                            
+                            <!-- Week 5 -->
+                            <div class="day-cell"><div class="day-number">26</div></div>
+                            <div class="day-cell"><div class="day-number">27</div></div>
+                            <div class="day-cell"><div class="day-number">28</div></div>
+                            <div class="day-cell"><div class="day-number">29</div></div>
+                            <div class="day-cell"><div class="day-number">30</div></div>
+                            <div class="day-cell"><div class="day-number">31</div></div>
+                            <div class="day-cell empty"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- February -->
+                    <div class="month-container">
+                        <div class="month-header">
+                            <h3 class="month-title">February</h3>
+                            <p class="month-year">2026</p>
+                        </div>
+                        
+                        <div class="calendar-grid">
+                            <!-- Day headers -->
+                            <div class="day-header">Sun</div>
+                            <div class="day-header">Mon</div>
+                            <div class="day-header">Tue</div>
+                            <div class="day-header">Wed</div>
+                            <div class="day-header">Thu</div>
+                            <div class="day-header">Fri</div>
+                            <div class="day-header">Sat</div>
+                            
+                            <!-- February days -->
+                            <div class="day-cell"><div class="day-number">1</div></div>
+                            <div class="day-cell"><div class="day-number">2</div></div>
+                            <div class="day-cell"><div class="day-number">3</div></div>
+                            <div class="day-cell"><div class="day-number">4</div></div>
+                            <div class="day-cell"><div class="day-number">5</div></div>
+                            <div class="day-cell"><div class="day-number">6</div></div>
+                            <div class="day-cell"><div class="day-number">7</div></div>
+                            
+                            <div class="day-cell"><div class="day-number">8</div></div>
+                            <div class="day-cell"><div class="day-number">9</div></div>
+                            <div class="day-cell"><div class="day-number">10</div></div>
+                            <div class="day-cell"><div class="day-number">11</div></div>
+                            <div class="day-cell"><div class="day-number">12</div></div>
+                            <div class="day-cell"><div class="day-number">13</div></div>
+                            <div class="day-cell"><div class="day-number">14</div></div>
+                            
+                            <div class="day-cell"><div class="day-number">15</div></div>
+                            <div class="day-cell"><div class="day-number">16</div></div>
+                            <div class="day-cell"><div class="day-number">17</div></div>
+                            <div class="day-cell"><div class="day-number">18</div></div>
+                            <div class="day-cell"><div class="day-number">19</div></div>
+                            <div class="day-cell"><div class="day-number">20</div></div>
+                            <div class="day-cell"><div class="day-number">21</div></div>
+                            
+                            <div class="day-cell"><div class="day-number">22</div></div>
+                            <div class="day-cell"><div class="day-number">23</div></div>
+                            <div class="day-cell"><div class="day-number">24</div></div>
+                            <div class="day-cell"><div class="day-number">25</div></div>
+                            <div class="day-cell"><div class="day-number">26</div></div>
+                            <div class="day-cell"><div class="day-number">27</div></div>
+                            <div class="day-cell"><div class="day-number">28</div></div>
+                            
+                            <!-- Empty cells -->
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                            <div class="day-cell empty"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Legend -->
+                <div class="legend">
+                    <h4 class="legend-title">Project Status</h4>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="legend-dot completed"></span>
+                            <span>Completed</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot in-progress"></span>
+                            <span>In Progress</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot upcoming"></span>
+                            <span>Upcoming</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+    </div>
+    
+    <!-- Modal / Popup -->
+    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()" aria-label="Close">×</button>
+                <h2 class="modal-title" id="modalTitle">Project Title</h2>
+                <span class="modal-status-badge" id="modalStatusBadge">Status</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <p class="modal-label">Description</p>
+                    <p class="modal-text" id="modalDescription">Project description goes here...</p>
+                </div>
+                
+                <div class="modal-section">
+                    <p class="modal-label">What I Learned</p>
+                    <p class="modal-text" id="modalLearning">Learning outcomes...</p>
+                </div>
+                
+                <div class="modal-section">
+                    <a href="#" class="modal-link" id="modalLink" target="_blank">
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        /* ========================================
+           PROJECT DATA
+           Store all project information here
+           ======================================== */
+        
+        const projects = {
+            1: {
+                title: "Portfolio Website",
+                description: "My first website! A personal portfolio to showcase all my coding projects. Built with modern HTML, CSS, and responsive design principles.",
+                status: "Completed",
+                statusColor: "#10b981",
+                learning: "HTML5 semantic elements, CSS Grid and Flexbox, responsive design with media queries, GitHub Pages deployment, modern UI/UX principles",
+                link: "https://github.com/yuyism/project-1"
+            },
+            2: {
+                title: "To-Do List App",
+                description: "An interactive to-do list where you can add, check off, and delete tasks. Features local storage to save your tasks even after closing the browser!",
+                status: "In Progress",
+                statusColor: "#f59e0b",
+                learning: "JavaScript fundamentals, DOM manipulation, event listeners, local storage API, array methods, creating and removing elements dynamically",
+                link: "https://github.com/yuyism/todo-app"
+            },
+            3: {
+                title: "Weather App",
+                description: "A weather application that shows current weather and 5-day forecast for any city. Uses a real weather API to fetch live data!",
+                status: "Upcoming",
+                statusColor: "#06b6d4",
+                learning: "Working with APIs, async/await and Promises, JSON data parsing, error handling, user input validation, displaying dynamic data",
+                link: "#"
+            }
+        };
+        
+        /* ========================================
+           SHOW PROJECT MODAL
+           Display project details when clicking a day
+           ======================================== */
+        
+        function showProject(projectId) {
+            const project = projects[projectId];
+            if (!project) return;
+            
+            // Update modal content
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalLearning').textContent = project.learning;
+            document.getElementById('modalLink').href = project.link;
+            
+            // Update status badge
+            const badge = document.getElementById('modalStatusBadge');
+            badge.textContent = project.status;
+            badge.style.backgroundColor = project.statusColor + '20';
+            badge.style.color = project.statusColor;
+            
+            // Show modal
+            document.getElementById('modal').classList.add('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        /* ========================================
+           CLOSE MODAL
+           Hide the project details popup
+           ======================================== */
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        /* ========================================
+           UPDATE PROGRESS
+           Calculate and display completion statistics
+           ======================================== */
+        
+        function updateProgress() {
+            const totalProjects = 59; // 31 days in January + 28 days in February
+            
+            // Count projects by status
+            const completedCells = document.querySelectorAll('.day-cell.completed');
+            const inProgressCells = document.querySelectorAll('.day-cell.in-progress');
+            
+            const completedCount = completedCells.length;
+            const inProgressCount = inProgressCells.length;
+            
+            // Calculate percentage
+            const percentage = Math.round((completedCount / totalProjects) * 100);
+            
+            // Update UI
+            document.getElementById('completedCount').textContent = completedCount;
+            document.getElementById('inProgressCount').textContent = inProgressCount;
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = percentage + '% Complete';
+        }
+        
+        /* ========================================
+           EVENT LISTENERS
+           ======================================== */
+        
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && document.getElementById('modal').classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // Add keyboard support for day cells
+        document.querySelectorAll('.day-cell[role="button"]').forEach(cell => {
+            cell.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        /* ========================================
+           INITIALIZE ON PAGE LOAD
+           ======================================== */
+        
+        window.addEventListener('load', function() {
+            updateProgress();
+            
+            // Add smooth scroll reveal animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe all sections for scroll animations
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease-out';
+                observer.observe(section);
+            });
+        });
+    </script>
+    
+</body>
+</html>
